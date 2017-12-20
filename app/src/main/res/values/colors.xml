@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="olxLight">#ee5e2d</color>
+    <color name="olxDark">#ee3c34</color>
+    <color name="errorText">#ffCC0000</color>
+</resources>

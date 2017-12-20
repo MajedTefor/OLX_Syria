@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="75dp"
+    android:gravity="center"
+    android:layout_marginLeft="8dp"
+    android:layout_marginRight="8dp"
+    android:paddingTop="8dp"
+    android:id="@+id/catItemContainer"
+    android:layout_height="wrap_content">
+
+    <RelativeLayout
+        android:layout_width="55dp"
+        android:layout_height="55dp"
+        android:padding="3dp"
+        android:background="@drawable/cat_item_circle">
+        <ImageView
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/chat"
+            android:scaleType="fitCenter"
+            android:padding="8dp"
+            android:id="@+id/catImg"/>
+    </RelativeLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cars"
+        android:textColor="#000"
+        android:textSize="14sp"
+        android:id="@+id/catName"
+        android:textAlignment="center"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/catGuid"
+        android:visibility="gone"
+        />
+
+</LinearLayout>

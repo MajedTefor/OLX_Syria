@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:staggered="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="#fff"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/categoryRV"
+            />
+
+        <com.olx.smartlife_solutions.olx_syria.StaggeredGridView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            staggered:columnCount="2"
+            staggered:mode="dynamic"
+            android:background="#fff"
+            android:id="@+id/mainAdsGV"
+            >
+        </com.olx.smartlife_solutions.olx_syria.StaggeredGridView>
+    </LinearLayout>
+
+
+
+
+
+
+</ScrollView>
