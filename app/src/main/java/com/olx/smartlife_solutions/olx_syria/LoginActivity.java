@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Patterns;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,128 +27,46 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
-    TextView emailOrPhone, password;
+
     TextView errorEmailOrPhone, errorPassword;
     EditText email, pass;
     Button login;
-    CheckBox showCheck;
-    // xTextView
-    TextView xEmailOrPhone, xPassword;
+    ImageButton showPasswordIB;
+    int s = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Login");
-
-        emailOrPhone = (TextView) findViewById(R.id.yourEmailOrPhone);
-        password = (TextView) findViewById(R.id.yourPasswordLogin);
-        errorEmailOrPhone = (TextView) findViewById(R.id.errorEmailOrPhone);
-        errorPassword = (TextView) findViewById(R.id.errorPasswordLogin);
-        email = (EditText) findViewById(R.id.emailOrPhone);
-        pass = (EditText) findViewById(R.id.passwordLogin);
-        //
-        xEmailOrPhone = (TextView) findViewById(R.id.xEmailOrPhone);
-        xPassword = (TextView) findViewById(R.id.xPasswordLogin);
-        //
-        showCheck = (CheckBox) findViewById(R.id.showPassword);
-        showCheck.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        errorEmailOrPhone = findViewById(R.id.errorEmailOrPhone);
+        errorPassword = findViewById(R.id.errorPasswordLogin);
+        email = findViewById(R.id.emailOrPhone);
+        pass = findViewById(R.id.passwordLogin);
+        showPasswordIB = findViewById(R.id.showPasswordIB);
+        showPasswordIB.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if(isChecked) {
+            public void onClick(View view) {
+                if(s == 0)
+                {
                     pass.setTransformationMethod(null);
-                } else {
-                    pass.setTransformationMethod(new PasswordTransformationMethod());
+                    showPasswordIB.setImageResource(R.mipmap.ic_eye_orange);
+                    s = 1;
                 }
+                else{
+                    pass.setTransformationMethod(new PasswordTransformationMethod());
+                    showPasswordIB.setImageResource(R.mipmap.ic_eye_grey);
+                    s = 0;
+                }
+
             }
         });
-        login = (Button) findViewById(R.id.loginBTN);
+        login = findViewById(R.id.loginBTN);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Login();
             }
         });
-        textViewListeners();
-        xTextViewListeners();
-    }
-    public void xTextViewListeners() {
-        xEmailOrPhone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                email.setText("");
-                xEmailOrPhone.setVisibility(View.GONE);
-            }
-        });
-        xPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pass.setText("");
-                xPassword.setVisibility(View.GONE);
-            }
-        });
-    }
-    public void textViewListeners() {
-        email.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Object o = email.getText().toString();
-                if ("".equals(o)) {
-                    emailOrPhone.setText("");
-                    xEmailOrPhone.setVisibility(View.GONE);
-                } else {
-                    emailOrPhone.setText("Your Name");
-                    xEmailOrPhone.setVisibility(View.VISIBLE);
-                }
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                Object o = email.getText().toString();
-                if ("".equals(o)) {
-                    errorEmailOrPhone.setText("Field is required");
-                    xEmailOrPhone.setVisibility(View.GONE);
-                } else {
-                    errorEmailOrPhone.setText("");
-                    xEmailOrPhone.setVisibility(View.VISIBLE);
-                }
-            }
-        });
-        pass.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                Object o = pass.getText().toString();
-                if ("".equals(o)) {
-                    password.setText("");
-                    xPassword.setVisibility(View.GONE);
-                } else {
-                    password.setText("Your Password");
-                    xPassword.setVisibility(View.VISIBLE);
-                }
-            }
-            @Override
-            public void afterTextChanged(Editable s) {
-                Object o = pass.getText().toString();
-                if ("".equals(o)) {
-                    errorPassword.setText("Field is required");
-                    xPassword.setVisibility(View.GONE);
-                } else {
-                    xPassword.setVisibility(View.VISIBLE);
-                    if (pass.getText().toString().length() < 6) {
-                        errorPassword.setText("Password must contain 6 character at Least");
-                    } else {
-                        errorPassword.setText("");
-                    }
-                }
-            }
-        });
-
     }
     public void Login() {
         if (isInputCorrect()) {
@@ -190,24 +110,6 @@ public class LoginActivity extends AppCompatActivity {
             b = false;
         }
         return b;
-    }
-    @Override // back button
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == android.R.id.home) {
-            this.finish();
-        }
-        return false;
-    }
-    public void backToRegister(View view) { // to Register
-        startActivity(new Intent(this,RegisterActivity.class));
-    }
-    public void toggleShow(View view) { // toggle show password
-        if(!(showCheck.isChecked())) {
-            showCheck.setChecked(true);
-        } else {
-            showCheck.setChecked(false);
-        }
     }
     public void goToTerms(View view) {
         startActivity(new Intent(this, Rules.class));

@@ -6,21 +6,21 @@
     android:layout_margin="4dp"
     android:layout_width="match_parent"
     android:background="@drawable/card_style"
-
     android:layout_height="wrap_content">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="130dp"
-        android:layout_margin="1dp"
-        android:background="#ddd"/>
+        android:adjustViewBounds="true"
+        android:id="@+id/cardImgIV"
+        android:layout_margin="1dp"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Car BMW X5 new not used for just fifty million dollar"
-        android:textSize="14.5sp"
+        android:textSize="14.5dp"
         android:padding="4dp"
+        android:id="@+id/titleTV"
         android:textColor="#000"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
@@ -29,12 +29,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="$50,000,000"
-        android:textSize="18sp"
+        android:textSize="18dp"
+        android:id="@+id/priceTV"
         android:padding="4dp"
         android:layout_marginBottom="8dp"
         android:textAlignment="center"
         android:textColor="@color/olxDark"
         android:textStyle="bold"
         />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#ddd"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="10 Dec     Lattakia"
+        android:padding="6dp"
+        android:id="@+id/dateAndLocationTV"
+        android:textSize="13dp"/>
 
 </LinearLayout>
