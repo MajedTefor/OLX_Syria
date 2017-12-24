@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.NestedScrollingChildHelper;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -16,11 +15,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.olx.smartlife_solutions.olx_syria.LocalDatabaseAndConnections.CheckInternet;
-
-import layout.NoInternetFragment;
 
 public class MainApp extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,
@@ -30,7 +26,7 @@ public class MainApp extends AppCompatActivity
 
     ImageButton homeBtn, favBtn, addNewAdBtn, chatsBtn, accountBtn;
     //
-    public static NoInternetFragment noInternetFragment = new NoInternetFragment();
+
     public static android.app.FragmentTransaction fragmentTransaction;
     public static CheckInternet checkInternet;
     @Override

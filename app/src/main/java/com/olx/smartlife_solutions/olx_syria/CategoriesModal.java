@@ -17,13 +17,15 @@ public class CategoriesModal implements StaticStrings{
     private JSONArray catsArray;
 
     Context context;
-    CategoriesModal(Context context) {
+    CategoriesModal(Context context, String json) {
         this.context = context;
         try {
-            catsArray = new JSONArray(CATS_JSON);
+            catsArray = new JSONArray(json);
         }
         catch (Exception e)
-        {}
+        {
+            Toast.makeText(context,"1 " + e.getMessage(),Toast.LENGTH_LONG).show();
+        }
     }
 
     List<CategoryModalItem> getAllParents(){
@@ -43,7 +45,9 @@ public class CategoriesModal implements StaticStrings{
             }
 
         }
-        catch (Exception e){}
+        catch (Exception e){
+            Toast.makeText(context,"2 " + e.getMessage(),Toast.LENGTH_LONG).show();
+        }
 
         return convertJsonArrayToModalItem(parentsArray);
     }
@@ -69,9 +73,7 @@ public class CategoriesModal implements StaticStrings{
             Toast.makeText(context,result.length()+" " , Toast.LENGTH_LONG).show();
         }
         catch (Exception e){
-            AlertDialog.Builder a = new AlertDialog.Builder(context);
-            a.setMessage(e.getMessage());
-            a.show();
+            Toast.makeText(context,"3 " + e.getMessage(),Toast.LENGTH_LONG).show();
         }
 
         return result;
@@ -92,7 +94,7 @@ public class CategoriesModal implements StaticStrings{
             }
         }
         catch (Exception e){
-
+            Toast.makeText(context,"4 " + e.getMessage(),Toast.LENGTH_LONG).show();
         }
         return modalItems;
     }

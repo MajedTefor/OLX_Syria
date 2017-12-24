@@ -1,5 +1,6 @@
 package com.olx.smartlife_solutions.olx_syria;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +12,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.android.volley.NetworkResponse;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -20,31 +30,29 @@ import java.util.HashMap;
  * Created by Majed-PC on 12/8/2017.
  */
 
-public class HomeFragment extends Fragment implements StaticStrings{
+public class HomeFragment extends Fragment implements StaticStrings,API_URLs{
 
     RecyclerView categoryRV;
     StaggeredGridView grid;
+
+    RequestQueue requestQueue;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_fragment,container,false);
 
+        requestQueue = Volley.newRequestQueue(getContext());
+
         /// Category Slider
         categoryRV = view.findViewById(R.id.categoryRV);
         categoryRV.setHasFixedSize(true);
-
 
         LinearLayoutManager categoryRVLayout = new LinearLayoutManager(getContext());
         categoryRVLayout.setOrientation(LinearLayoutManager.HORIZONTAL);
 
 
         categoryRV.setLayoutManager(categoryRVLayout);
-
-        RecyclerView.Adapter adapter = new CategoryRecyclerAdapter(getContext(),null);
-
-
-        categoryRV.setAdapter(adapter);
-
 
         /// Ads Grid
         grid = view.findViewById(R.id.mainAdsGV);
@@ -64,15 +72,53 @@ public class HomeFragment extends Fragment implements StaticStrings{
 
             }
         });
-        loadAds();
+        downloadCategoriesThenMainAds();
         return view;
 
     }
 
-    void loadAds()
+    void downloadCategoriesThenMainAds(){
+        final StringRequest getCategoriesJson = new StringRequest(Request.Method.GET, CATEGORIES_URL,
+            new Response.Listener<String>() {
+                @Override
+                public void onResponse(String s) {
+                   // Toast.makeText(getContext(),s,Toast.LENGTH_LONG).show();
+                    loadCategories(s);
+                    downloadMainAds();
+                }
+            },
+            new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError volleyError) {
+
+                }
+            }
+        );
+        requestQueue.add(getCategoriesJson);
+    }
+
+    void downloadMainAds(){
+        StringRequest getMainAdsJson = new StringRequest(Request.Method.GET, ADS_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        loadAds(s);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+
+                    }
+                }
+        );
+        requestQueue.add(getMainAdsJson);
+    }
+
+    void loadAds(String json)
     {
         try{
-            JSONArray array = new JSONArray(ADS_MIN_JSON);
+            JSONArray array = new JSONArray(json);
             for(int i = 0; i < array.length(); i++)
             {
                 JSONObject singleAd = array.getJSONObject(i);
@@ -88,5 +134,12 @@ public class HomeFragment extends Fragment implements StaticStrings{
         catch (Exception e){
             Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
         }
+    }
+
+    void loadCategories(String json)
+    {
+        RecyclerView.Adapter adapter = new CategoryRecyclerAdapter(getContext(),null ,json);
+
+        categoryRV.setAdapter(adapter);
     }
 }

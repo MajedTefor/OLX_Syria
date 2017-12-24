@@ -6,7 +6,7 @@ package com.olx.smartlife_solutions.olx_syria;
 
 public interface API_URLs {
 
-    String MAIN_URL = "http://tarekmulla-001-site3.itempurl.com/api/";
+    String MAIN_URL = "http://tarekmulla-001-site6.itempurl.com/api/";
 
     String CATS_IMAGES_URL = MAIN_URL + "images/";
 
@@ -15,5 +15,9 @@ public interface API_URLs {
     String Register_URL = MAIN_URL + "AccountAPI/Register/";
 
     String Login_URL = MAIN_URL + "AccountAPI/Login/";
+
+    String ADS_URL = MAIN_URL + "ad";
+
+    String CATEGORIES_URL = MAIN_URL + "category";
 
 }

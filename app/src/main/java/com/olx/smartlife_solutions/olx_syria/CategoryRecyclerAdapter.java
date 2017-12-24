@@ -27,13 +27,15 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
     private Context context;
     private String guid;
     CategoriesModal categoriesModal;
+    String categoriesJson = "";
 
-    CategoryRecyclerAdapter(Context context,String guid)
+    CategoryRecyclerAdapter(Context context,String guid, String json)
     {
         inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         this.context = context;
         this.guid = guid;
-        categoriesModal = new CategoriesModal(context);
+        categoriesJson = json;
+        categoriesModal = new CategoriesModal(context, json );
         items = new ArrayList<>();
         if(guid == null)
         {
@@ -64,7 +66,7 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
                 if(singleItem.isHasChilds())
                 {
                     RecyclerView categoryRV = ((Activity)context).findViewById(R.id.categoryRV);
-                    RecyclerView.Adapter adapter = new CategoryRecyclerAdapter(context,itemGuid);
+                    RecyclerView.Adapter adapter = new CategoryRecyclerAdapter(context,itemGuid,categoriesJson);
                     categoryRV.setAdapter(adapter);
                 }
 

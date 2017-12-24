@@ -1,52 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
-    android:id="@+id/container"
-    android:layout_margin="4dp"
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardUseCompatPadding="true"
+    app:cardCornerRadius="3dp"
+    app:contentPadding="1.5dp"
+    app:cardElevation="2dp"
     android:layout_width="match_parent"
-    android:background="@drawable/card_style"
     android:layout_height="wrap_content">
 
-    <ImageView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:id="@+id/cardImgIV"
-        android:layout_margin="1dp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Car BMW X5 new not used for just fifty million dollar"
-        android:textSize="14.5dp"
-        android:padding="4dp"
-        android:id="@+id/titleTV"
-        android:textColor="#000"
-        android:layout_marginLeft="5dp"
-        android:layout_marginRight="5dp"
-        />
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="$50,000,000"
-        android:textSize="18dp"
-        android:id="@+id/priceTV"
-        android:padding="4dp"
-        android:layout_marginBottom="8dp"
-        android:textAlignment="center"
-        android:textColor="@color/olxDark"
-        android:textStyle="bold"
-        />
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#ddd"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="10 Dec     Lattakia"
-        android:padding="6dp"
-        android:id="@+id/dateAndLocationTV"
-        android:textSize="13dp"/>
+        android:id="@+id/container"
+        android:orientation="vertical">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:id="@+id/cardImgIV"
+            android:layout_margin="1dp"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Car BMW X5 new not used for just fifty million dollar"
+            android:textSize="18.3dp"
+            android:id="@+id/titleTV"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:textColor="#000"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10 Dec     Lattakia"
+            android:id="@+id/dateAndLocationTV"
+            android:textColor="#9b9b9b"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:textSize="12dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:background="#f9f9f9"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="$50,000,000"
+            android:textSize="23dp"
+            android:id="@+id/priceTV"
+            android:padding="4dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:textAlignment="center"
+            android:textColor="@color/olxDark"
+            android:textStyle="bold"
+            />
 
-</LinearLayout>
+
+    </LinearLayout>
+
+
+
+</android.support.v7.widget.CardView>

@@ -9,7 +9,6 @@ import android.webkit.WebView;
 import android.widget.LinearLayout;
 import static com.olx.smartlife_solutions.olx_syria.MainApp.checkInternet;
 import static com.olx.smartlife_solutions.olx_syria.MainApp.fragmentTransaction;
-import static com.olx.smartlife_solutions.olx_syria.MainApp.noInternetFragment;
 
 public class Rules extends AppCompatActivity {
     WebView webView;
@@ -27,7 +26,7 @@ public class Rules extends AppCompatActivity {
         webSettings.setJavaScriptEnabled(true);
         if (!checkInternet.isConnected()) {
             fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.rulesView, noInternetFragment);
+      //      fragmentTransaction.replace(R.id.rulesView, noInternetFragment);
             fragmentTransaction.commit();
         }
     }

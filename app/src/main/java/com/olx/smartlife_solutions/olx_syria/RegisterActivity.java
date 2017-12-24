@@ -1,6 +1,5 @@
 package com.olx.smartlife_solutions.olx_syria;
 
-import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,7 +24,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
-import com.olx.smartlife_solutions.olx_syria.LocalDatabaseAndConnections.CheckInternet;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,11 +31,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import layout.NoInternetFragment;
-
 import static com.olx.smartlife_solutions.olx_syria.MainApp.checkInternet;
 import static com.olx.smartlife_solutions.olx_syria.MainApp.fragmentTransaction;
-import static com.olx.smartlife_solutions.olx_syria.MainApp.noInternetFragment;
 
 
 public class RegisterActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener, API_URLs {
@@ -46,11 +41,14 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     EditText name, email, phone, pass, rePass;
     CheckBox agreeTerm;
     Button register;
+
     // TextViews to show titles and error letters
     TextView yourName, yourEmail, yourPhone, yourPassword, yourRePassword, yourCountry;
     TextView errorName, errorEmail, errorPhone, errorPassword, errorRePassword, errorCountry, errorCheck;
+
     // X TextViews to clear EditText and it will be GONE
     TextView xName, xEmail, xPhone, xPassword, xRePassword;
+
     // City
     int positionCity;
     //
@@ -130,7 +128,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
             @Override
             public void onErrorResponse(VolleyError volleyError) {
                 fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.registerActivityView, noInternetFragment);
+              //  fragmentTransaction.replace(R.id.registerActivityView, noInternetFragment);
                 fragmentTransaction.commit();
                 registerForm = findViewById(R.id.registerForm);
                 registerForm.setVisibility(View.GONE);
@@ -144,7 +142,7 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
     public boolean checkInternetConnection() {
         if (!checkInternet.isConnected()) {
             fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.registerActivityView, noInternetFragment);
+         //   fragmentTransaction.replace(R.id.registerActivityView, noInternetFragment);
             fragmentTransaction.commit();
             registerForm = findViewById(R.id.registerForm);
             registerForm.setVisibility(View.GONE);

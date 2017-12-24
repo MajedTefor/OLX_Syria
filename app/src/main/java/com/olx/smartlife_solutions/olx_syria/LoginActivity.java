@@ -79,7 +79,6 @@ public class LoginActivity extends AppCompatActivity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            //JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, )
         }
     }
     public boolean isInputCorrect() {
