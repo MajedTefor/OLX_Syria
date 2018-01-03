@@ -111,11 +111,11 @@ public class MainApp extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.drawerChooseCity) {
-
+        if (id == R.id.drawerAboutApp) {
+            startActivity(new Intent(this, AdsMap.class));
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
