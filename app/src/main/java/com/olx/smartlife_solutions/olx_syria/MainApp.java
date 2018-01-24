@@ -128,6 +128,10 @@ public class MainApp extends AppCompatActivity
             case R.id.homeBtn:
                 frag = new HomeFragment();
                 break;
+            case R.id.addNewAdBtn:
+                Intent goToCreateNewAd = new Intent(MainApp.this,CreateNewAdActivity.class);
+                startActivity(goToCreateNewAd);
+                break;
         }
 
         if(frag != null)

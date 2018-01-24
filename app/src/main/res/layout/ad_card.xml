@@ -5,6 +5,7 @@
     app:cardCornerRadius="3dp"
     app:contentPadding="1.5dp"
     app:cardElevation="2dp"
+    android:id="@+id/parentCardCV"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 

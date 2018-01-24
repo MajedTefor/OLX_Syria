@@ -13,13 +13,13 @@ public interface StaticStrings {
     //Preview Ad
     String PRE_TITLE = "title";
     String PRE_PRICE = "price";
-    String PRE_DATE = "";
-    String PRE_VIEWS = "view";
+    String PRE_DATE = "updatedDate";
+    String PRE_VIEWS = "views";
     String PRE_HEARTS = "hearts";
-    String PRE_DESCRIPTION = "";
-    String PRE_COUNTRY = "";
+    String PRE_DESCRIPTION = "description";
+    String PRE_COUNTRY = "countryName";
     String PRE_CITY = "cityName";
-    String PRE_AREA = "";
+    String PRE_AREA = "areaName";
     String PRE_USER = "name";
     String PRE_GUID = "id";
     String PRE_MAIN_IMG = "mainImage";

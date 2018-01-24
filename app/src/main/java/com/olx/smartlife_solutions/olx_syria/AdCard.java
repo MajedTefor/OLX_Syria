@@ -1,6 +1,8 @@
 package com.olx.smartlife_solutions.olx_syria;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,7 @@ public class AdCard extends StaggeredGridViewItem implements StaticStrings{
     HashMap<String,String> data;
     Context context;
 
+
     public AdCard(Context context ,HashMap<String,String> data)
     {
         this.data = data;
@@ -36,10 +39,19 @@ public class AdCard extends StaggeredGridViewItem implements StaticStrings{
         TextView dateAndLocation = card.findViewById(R.id.dateAndLocationTV);
         TextView price = card.findViewById(R.id.priceTV);
         ImageView img = card.findViewById(R.id.cardImgIV);
-        Picasso.with(context).load("http://www.tallshipsfalmouth.co.uk/wp-content/uploads/2012/11/Mercedes-tall-ship2-e1354287088569.jpg").into(img);
+        CardView parentCard = card.findViewById(R.id.parentCardCV);
+        Picasso.with(context).load(PRE_MAIN_IMG + data.get(PRE_GUID)).placeholder(R.drawable.no_img).into(img);
         title.setText(data.get(PRE_TITLE));
         dateAndLocation.setText(data.get(PRE_DATE) + "     " + data.get(PRE_CITY));
         price.setText(data.get(PRE_PRICE));
+        parentCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent goToPreview = new Intent(context,PreviewAddActivity.class);
+                goToPreview.putExtra(PRE_GUID,data.get(PRE_GUID));
+                context.startActivity(goToPreview);
+            }
+        });
         return card;
     }
 

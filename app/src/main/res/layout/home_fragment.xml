@@ -35,10 +35,8 @@
     </ScrollView>
 
     <include
-        android:id="@+id/loadingAndFailedView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
         layout="@layout/loading_and_failed_view"/>
 
 
