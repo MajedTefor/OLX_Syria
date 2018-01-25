@@ -132,12 +132,15 @@ public class MainApp extends AppCompatActivity
                 Intent goToCreateNewAd = new Intent(MainApp.this,CreateNewAdActivity.class);
                 startActivity(goToCreateNewAd);
                 break;
+            case R.id.favBtn:
+                frag = new FavoriteFragment();
+                break;
         }
 
         if(frag != null)
         {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragmentFL,frag);
+            transaction.replace(R.id.fragmentFL, frag);
             transaction.commit();
         }
     }
