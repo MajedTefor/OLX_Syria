@@ -139,6 +139,9 @@ public class MainApp extends AppCompatActivity
             case R.id.chatsBtn:
                 frag = new ChatFragment();
                 break;
+            case R.id.accountBtn:
+                frag = new AccountFragment();
+                break;
         }
 
         if(frag != null)
