@@ -113,4 +113,8 @@ public class LoginActivity extends AppCompatActivity {
     public void goToTerms(View view) {
         startActivity(new Intent(this, Rules.class));
     }
+
+    public void goToForgetPassword(View view) {
+        startActivity(new Intent(this, ForgetPasswoedActivity.class));
+    }
 }

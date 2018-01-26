@@ -50,7 +50,8 @@ public class MainApp extends AppCompatActivity
         checkInternet = new CheckInternet(this);
     }
     public void goToRegister(View view) {
-        startActivity(new Intent(this, RegisterActivity.class));
+        //startActivity(new Intent(this, RegisterActivity.class));
+        startActivity(new Intent(this, RegisterationActivity.class));
     }
     public void goToLogin(View view) {
         startActivity(new Intent(this, LoginActivity.class));

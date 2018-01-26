@@ -36,7 +36,6 @@
             android:name=".PreviewAddActivity"
             android:label="@string/title_activity_preview_add"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".RegisterActivity" />
         <activity android:name=".Rules" />
         <activity android:name=".LoginActivity" />
         <!--
@@ -58,7 +57,9 @@
             android:name=".AdsMap"
             android:label="@string/title_activity_ads_map"
             android:theme="@style/AppTheme" />
-        <activity android:name=".CreateNewAdActivity"></activity>
+        <activity android:name=".CreateNewAdActivity" />
+        <activity android:name=".RegisterationActivity" />
+        <activity android:name=".ForgetPasswoedActivity"></activity>
     </application>
 
 </manifest>
