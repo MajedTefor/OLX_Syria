@@ -58,9 +58,9 @@ public class RegisterActivity extends AppCompatActivity implements AdapterView.O
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
         // To display back icon and setting Activity Title
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Register");
+//        getSupportActionBar().setDisplayShowHomeEnabled(true);
+//        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+//        getSupportActionBar().setTitle("Register");
         // EditTexts and TextView
         name = findViewById(R.id.nameView);
         email = findViewById(R.id.emailView);

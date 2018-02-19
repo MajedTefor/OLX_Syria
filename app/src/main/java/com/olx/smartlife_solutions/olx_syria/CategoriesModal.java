@@ -16,7 +16,7 @@ public class CategoriesModal implements StaticStrings{
 
 
     private JSONArray catsArray;
-
+    
     Context context;
     CategoriesModal(Context context, String json) {
         this.context = context;
@@ -101,32 +101,32 @@ public class CategoriesModal implements StaticStrings{
     }
 
 
-    public class CategoryModalItem{
+     class CategoryModalItem{
         private String imagePath, name, guid;
 
-        public boolean isHasChilds() {
+        boolean isHasChilds() {
             return hasChilds;
         }
 
-        public void setHasChilds(boolean hasChilds) {
+        void setHasChilds(boolean hasChilds) {
             this.hasChilds = hasChilds;
         }
 
         private boolean hasChilds;
 
-        public String getGuid() {
+        String getGuid() {
             return guid;
         }
 
-        public void setGuid(String guid) {
+        void setGuid(String guid) {
             this.guid = guid;
         }
 
-        public String getImagePath() {
+        String getImagePath() {
             return imagePath;
         }
 
-        public void setImagePath(String imagePath) {
+        void setImagePath(String imagePath) {
             this.imagePath = imagePath;
         }
 

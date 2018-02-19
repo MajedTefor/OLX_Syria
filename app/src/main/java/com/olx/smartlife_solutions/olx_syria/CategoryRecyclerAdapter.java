@@ -2,10 +2,12 @@ package com.olx.smartlife_solutions.olx_syria;
 
 import android.app.Activity;
 import android.content.Context;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -69,10 +71,13 @@ public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecycl
                     RecyclerView.Adapter adapter = new CategoryRecyclerAdapter(context,itemGuid,categoriesJson);
                     categoryRV.setAdapter(adapter);
                 }
+                ((TextView)((Activity)context).findViewById(R.id.catIdET)).setText(itemGuid);
 
             }
         });
     }
+
+
 
     @Override
     public int getItemCount() {

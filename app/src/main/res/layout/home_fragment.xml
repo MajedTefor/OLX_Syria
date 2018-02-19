@@ -5,6 +5,14 @@
     android:background="#fff"
     android:layout_height="match_parent">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/catIdET"
+        android:visibility="gone"
+        android:inputType="text"
+        />
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

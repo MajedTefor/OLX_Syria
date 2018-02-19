@@ -18,7 +18,7 @@ import java.util.HashMap;
  * Created by Majed-PC on 12/7/2017.
  */
 
-public class AdCard extends StaggeredGridViewItem implements StaticStrings{
+public class AdCard extends StaggeredGridViewItem implements StaticStrings, API_URLs{
 
     private View card;
 
@@ -40,7 +40,7 @@ public class AdCard extends StaggeredGridViewItem implements StaticStrings{
         TextView price = card.findViewById(R.id.priceTV);
         ImageView img = card.findViewById(R.id.cardImgIV);
         CardView parentCard = card.findViewById(R.id.parentCardCV);
-        Picasso.with(context).load(PRE_MAIN_IMG + data.get(PRE_GUID)).placeholder(R.drawable.no_img).into(img);
+        Picasso.with(context).load(MAIN_Thumbnail_IMG_AD + data.get(PRE_GUID)).placeholder(R.drawable.no_img).into(img);
         title.setText(data.get(PRE_TITLE));
         dateAndLocation.setText(data.get(PRE_DATE) + "     " + data.get(PRE_CITY));
         price.setText(data.get(PRE_PRICE));

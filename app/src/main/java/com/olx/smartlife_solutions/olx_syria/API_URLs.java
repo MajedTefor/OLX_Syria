@@ -10,6 +10,8 @@ public interface API_URLs {
 
     String MAIN_IMG_AD = MAIN_URL + "image/GetAdMainImage/";
 
+    String MAIN_Thumbnail_IMG_AD = MAIN_URL + "image/GetAdMainThumbnail/";
+
     String CATS_IMAGES_URL = MAIN_URL + "images/";
 
     String CITY_URL = MAIN_URL + "City/";
@@ -21,5 +23,9 @@ public interface API_URLs {
     String ADS_URL = MAIN_URL + "ad/";
 
     String CATEGORIES_URL = MAIN_URL + "category/";
+
+    String GET_ADS_BY_CATEGORY = MAIN_URL + "CategoryDetail/GetAds/";
+
+    
 
 }

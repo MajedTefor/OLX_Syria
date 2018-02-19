@@ -6,10 +6,14 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -39,7 +43,7 @@ public class HomeFragment extends Fragment implements StaticStrings,API_URLs{
     LinearLayout failedLL;
     Button failedRetryBtn;
     TextView statusCodeTV;
-
+    TextView catIdET;
 
     int statusCode = 0;
 
@@ -54,10 +58,28 @@ public class HomeFragment extends Fragment implements StaticStrings,API_URLs{
         failedLL = view.findViewById(R.id.failedViewLL);
         failedRetryBtn = view.findViewById(R.id.failedRetryBtn);
         statusCodeTV = view.findViewById(R.id.statusCodeTV);
+        catIdET = view.findViewById(R.id.catIdET);
         failedRetryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 downloadCategoriesThenMainAds();
+            }
+        });
+
+        catIdET.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                downloadAdsByCategory(catIdET.getText().toString());
             }
         });
 
@@ -134,6 +156,27 @@ public class HomeFragment extends Fragment implements StaticStrings,API_URLs{
                         //statusCode = volleyError.networkResponse.statusCode;
                         showFailedView();
                         Toast.makeText(getContext(),"2",Toast.LENGTH_LONG).show();
+                    }
+                }
+        );
+        requestQueue.add(getMainAdsJson);
+    }
+
+    public void downloadAdsByCategory(String catGuid)
+    {
+        StringRequest getMainAdsJson = new StringRequest(Request.Method.GET, GET_ADS_BY_CATEGORY + catGuid,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String s) {
+                        loadAds(s);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        //statusCode = volleyError.networkResponse.statusCode;
+                        showFailedView();
+                        Toast.makeText(getContext(),"23",Toast.LENGTH_LONG).show();
                     }
                 }
         );
