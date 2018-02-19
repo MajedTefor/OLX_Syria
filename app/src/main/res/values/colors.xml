@@ -6,4 +6,7 @@
     <color name="olxLight">#ee5e2d</color>
     <color name="olxDark">#ee3c34</color>
     <color name="errorText">#ffCC0000</color>
+    <color name="edit_background">#56ffc8aa</color>
+    <color name="dark_color">#9b491e</color>
+    <color name="light_background">#ffebdf</color>
 </resources>

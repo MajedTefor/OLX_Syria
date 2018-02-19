@@ -50,7 +50,8 @@ public class MainApp extends AppCompatActivity
         checkInternet = new CheckInternet(this);
     }
     public void goToRegister(View view) {
-        startActivity(new Intent(this, RegisterActivity.class));
+        //startActivity(new Intent(this, RegisterActivity.class));
+        startActivity(new Intent(this, RegisterationActivity.class));
     }
     public void goToLogin(View view) {
         startActivity(new Intent(this, LoginActivity.class));
@@ -132,12 +133,21 @@ public class MainApp extends AppCompatActivity
                 Intent goToCreateNewAd = new Intent(MainApp.this,CreateNewAdActivity.class);
                 startActivity(goToCreateNewAd);
                 break;
+            case R.id.favBtn:
+                frag = new FavoriteFragment();
+                break;
+            case R.id.chatsBtn:
+                frag = new ChatFragment();
+                break;
+            case R.id.accountBtn:
+                frag = new AccountFragment();
+                break;
         }
 
         if(frag != null)
         {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            transaction.replace(R.id.fragmentFL,frag);
+            transaction.replace(R.id.fragmentFL, frag);
             transaction.commit();
         }
     }

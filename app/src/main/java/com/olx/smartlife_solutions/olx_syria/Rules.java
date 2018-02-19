@@ -17,18 +17,11 @@ public class Rules extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rules);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("Rules");
         webView = findViewById(R.id.showWebPage);
         webView.loadUrl(rulesWebPage);
         WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        if (!checkInternet.isConnected()) {
-            fragmentTransaction = getFragmentManager().beginTransaction();
-      //      fragmentTransaction.replace(R.id.rulesView, noInternetFragment);
-            fragmentTransaction.commit();
-        }
+
     }
 
     @Override

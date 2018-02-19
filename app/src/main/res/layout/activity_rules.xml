@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,10 +8,8 @@
     android:id="@+id/rulesView">
 
     <WebView
-        android:layout_width="368dp"
-        android:layout_height="495dp"
-        android:id="@+id/showWebPage"
-        tools:layout_editor_absoluteY="8dp"
-        tools:layout_editor_absoluteX="8dp" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/showWebPage" />
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/favLayoutItem"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:padding="10dp">
+        <ImageView
+            android:id="@+id/favImageItem"
+            android:layout_gravity="center_vertical"
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            app:srcCompat="@drawable/add"/>
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+            <TextView
+                android:id="@+id/favNameItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="25dp"/>
+            <TextView
+                android:id="@+id/favPriceItem"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price"
+                android:textSize="18dp"/>
+        </LinearLayout>
+        <ImageView
+            android:id="@+id/favCancel"
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            app:srcCompat="@drawable/ic_cancel"/>
+    </LinearLayout>
+
+</LinearLayout>
