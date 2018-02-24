@@ -111,9 +111,13 @@ public class PreviewAddActivity extends AppCompatActivity implements StaticStrin
         try {
             JSONObject jsonObject = new JSONObject(json);
             titleTV.setText(jsonObject.getString(PRE_TITLE));
-            dateTV.setText(jsonObject.getString(PRE_DATE));
+            String dateFixed = "NaN";
+            try {
+                dateFixed = jsonObject.get(PRE_DATE).toString().split("T")[0];
+            } catch (Exception ignored){}
+            dateTV.setText(dateFixed);
             usernameTV.setText(jsonObject.getString(PRE_USER));
-            priceTV.setText(jsonObject.getString(PRE_PRICE));
+            priceTV.setText(jsonObject.getString(PRE_PRICE) + " S.P");
             heartsTV.setText(jsonObject.getString(PRE_HEARTS));
             viewsTV.setText(jsonObject.getString(PRE_VIEWS));
             String loc = (jsonObject.getString(PRE_COUNTRY).isEmpty() ? jsonObject.getString(PRE_COUNTRY)+", ":"")+

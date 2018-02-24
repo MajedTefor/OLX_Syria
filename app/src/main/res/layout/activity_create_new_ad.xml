@@ -24,113 +24,308 @@
         </android.support.v7.widget.Toolbar>
 
     </android.support.design.widget.AppBarLayout>
-
-    <ScrollView
-        android:layout_marginTop="?attr/actionBarSize"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <LinearLayout
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:paddingTop="30dp"
-            android:orientation="vertical"
-            >
+            android:layout_height="match_parent"
 
-            <TextView
+            android:scaleType="centerCrop"
+            />
+        <ScrollView
+            android:layout_marginTop="?attr/actionBarSize"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Main Image:"
-                style="@style/CreateNewAdTitlesTV"/>
-            <ImageButton
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/no_img"
-                android:scaleType="fitCenter"
-                android:adjustViewBounds="true"
-                android:background="#00000000"
-                />
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:paddingTop="30dp"
+                android:paddingBottom="30dp"
+                android:orientation="vertical"
                 >
-                <EditText
+
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:ems="10"
-                    android:id="@+id/titleTV"
-                    android:hint="Title"
-                    android:textAlignment="textStart"/>
-            </android.support.design.widget.TextInputLayout>
+                    android:text="Main Image:"
+                    style="@style/CreateNewAdTitlesTV"/>
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                >
-                <EditText
+                <ImageButton
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:ems="10"
-                    android:id="@+id/priceTV"
-                    android:hint="Price"
-                    android:textAlignment="textStart"/>
-            </android.support.design.widget.TextInputLayout>
+                    android:id="@+id/mainImgIB"
+                    android:src="@drawable/main_img_temp"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:background="#00000000"
+                    />
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                >
-                <EditText
+                <!--  EditTexts  -->
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="text"
-                    android:ems="10"
-                    android:id="@+id/fullNameTV"
-                    android:hint="Full Name"
-                    android:textAlignment="textStart"/>
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_marginTop="30dp"
+                    android:orientation="horizontal">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                >
-                <EditText
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="45dp"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="top"
+                        android:paddingTop="20dp"
+                        android:src="@mipmap/tick_icon_grey"/>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:errorEnabled="true"
+                        android:id="@+id/titleTIL"
+                        >
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:ems="10"
+                            android:maxLength="70"
+                            android:hint="Title"
+                            android:textAlignment="textStart"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="phone|number"
-                    android:ems="10"
-                    android:id="@+id/phoneTV"
-                    android:hint="Phone Number"
-                    android:textAlignment="textStart"/>
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
 
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
-                >
-                <EditText
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="45dp"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="top"
+                        android:paddingTop="20dp"
+                        android:src="@mipmap/tick_icon_grey"/>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:errorEnabled="true"
+                        android:id="@+id/desTIL"
+                        >
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="textMultiLine"
+                            android:ems="10"
+                            android:maxLength="2000"
+                            android:hint="Description"
+                            android:textAlignment="textStart"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:ems="10"
-                    android:id="@+id/emailTV"
-                    android:hint="Your Email"
-                    android:textAlignment="textStart"/>
-            </android.support.design.widget.TextInputLayout>
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
 
-        </LinearLayout>
-    </ScrollView>
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="45dp"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="top"
+                        android:paddingTop="20dp"
+                        android:src="@mipmap/tick_icon_grey"/>
 
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:errorEnabled="true"
+                        android:id="@+id/priceTIL"
+                        >
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:ems="10"
+                            android:maxLength="15"
+                            android:hint="Price"
+                            android:textAlignment="textStart"/>
+                    </android.support.design.widget.TextInputLayout>
 
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="45dp"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="top"
+                        android:paddingTop="20dp"
+                        android:src="@mipmap/tick_icon_grey"/>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:errorEnabled="true"
+                        android:id="@+id/phoneTIL"
+                        >
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="phone"
+                            android:ems="10"
+                            android:maxLength="20"
+                            android:hint="Phone Number"
+                            android:textAlignment="textStart"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="30dp"
+                        android:layout_height="45dp"
+                        android:scaleType="fitCenter"
+                        android:layout_gravity="top"
+                        android:paddingTop="20dp"
+                        android:src="@mipmap/tick_icon_grey"/>
+
+                    <android.support.design.widget.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:errorEnabled="true"
+                        android:id="@+id/nameTIL"
+                        >
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:ems="10"
+                            android:maxLength="20"
+                            android:hint="Your Name"
+                            android:textAlignment="textStart"/>
+                    </android.support.design.widget.TextInputLayout>
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/selectedImgsRV"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layoutDirection="ltr"
+                    android:gravity="center"
+                    android:paddingBottom="8dp"
+                    android:id="@+id/addNewImgLL"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="15dp"
+                    android:paddingTop="8dp"
+                    android:background="@drawable/grey_rounded_btn"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:src="@drawable/camera"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:text="+ Add Image"
+                        android:gravity="center_vertical"
+                        android:textSize="18dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_marginLeft="5dp"
+
+                        />
+
+                </LinearLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#ddd"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="By clicking Submit, I agree to "
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#0c9da4"
+                        android:text="Terms Of Use"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Submit"
+                        android:background="@drawable/log_reg_btn"
+                        android:textColor="#fff"
+                        android:layout_margin="6dp"
+                        android:id="@+id/submitBtn"
+                        />
+                    <Button
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/grey_rounded_btn"
+                        android:text="Preview"
+                        android:textColor="@color/olxDark"
+                        android:layout_margin="6dp"
+                        android:id="@+id/previewBtn"
+                        />
+                </LinearLayout>
+
+            </LinearLayout>
+        </ScrollView>
+    </FrameLayout>
 
 </android.support.design.widget.CoordinatorLayout>

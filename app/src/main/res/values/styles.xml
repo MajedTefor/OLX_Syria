@@ -28,11 +28,12 @@
         <item name="android:layout_marginBottom">10dp</item>
     </style>
 
-    <style name="TextInputLayout1" parent="TextAppearance.AppCompat">
-        <!--<item name="android:textColorHint">#1d1d1d</item>-->
-        <!--<item name="android:textSize">20dp</item>-->
-        <!--<item name="colorControlNormal">@color/olxDark</item>-->
-        <!--<item name="colorControlActivated">@color/olxDark</item>-->
+    <style name="TextInputLayoutErrorRed" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/olxDark</item>
+    </style>
+
+    <style name="TextInputLayoutErrorGreen" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/olxGreen</item>
     </style>
 
 </resources>

@@ -18,10 +18,6 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by Majed-PC on 12/9/2017.
- */
-
 public class CategoryRecyclerAdapter extends RecyclerView.Adapter<CategoryRecyclerAdapter.ViewHolder> implements API_URLs{
 
     private LayoutInflater inflater;
