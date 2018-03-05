@@ -71,7 +71,7 @@ public class CategoriesModal implements StaticStrings{
                     result.put(currentObject);
                 }
             }
-            Toast.makeText(context,result.length()+" " , Toast.LENGTH_LONG).show();
+           // Toast.makeText(context,result.length()+" " , Toast.LENGTH_LONG).show();
         }
         catch (Exception e){
             Toast.makeText(context,"3 " + e.getMessage(),Toast.LENGTH_LONG).show();

@@ -1,5 +1,6 @@
 package com.olx.smartlife_solutions.olx_syria;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -28,16 +29,16 @@ import java.util.Map;
 public class CreateNewAdActivity extends AppCompatActivity implements View.OnClickListener{
 
     Toolbar toolbar;
-    TextInputLayout titleTIL, desTil, priceTIL, phoneTIL, nameTIL;
+    TextInputLayout titleTIL, desTil, priceTIL, phoneTIL, nameTIL, catsTIL;
     HashMap<Integer,Boolean> checkerHM;
-    Button submitBtn;
+    Button submitBtn, previewBtn;
     ImageButton mainImgIB;
     RecyclerView selectedRV;
     LinearLayout addNewImgLL;
     List<Bitmap> adImages;
     Bitmap mainImgBitmap = null;
     SelectedImagesRVAdapter adImagesAdapter;
-
+    HashMap<String, String> selectedCatsIds;
 
 
     @Override
@@ -58,11 +59,12 @@ public class CreateNewAdActivity extends AppCompatActivity implements View.OnCli
     {
         toolbar = findViewById(R.id.toolbar);
         checkerHM = new HashMap<>();
+        selectedCatsIds = new HashMap<>();
 
         selectedRV = findViewById(R.id.selectedImgsRV);
         selectedRV.setHasFixedSize(true);
 
-        GridLayoutManager selectedRVLayout = new GridLayoutManager(getApplicationContext(),2);
+        final GridLayoutManager selectedRVLayout = new GridLayoutManager(getApplicationContext(),2);
 
 
         selectedRV.setLayoutManager(selectedRVLayout);
@@ -77,8 +79,11 @@ public class CreateNewAdActivity extends AppCompatActivity implements View.OnCli
         checkerHM.put(phoneTIL.getId(),false);
         nameTIL = findViewById(R.id.nameTIL);
         checkerHM.put(nameTIL.getId(),false);
+        catsTIL = findViewById(R.id.catsTIL);
+        checkerHM.put(catsTIL.getId(),false);
 
         submitBtn = findViewById(R.id.submitBtn);
+        previewBtn = findViewById(R.id.previewBtn);
         mainImgIB = findViewById(R.id.mainImgIB);
 
         addNewImgLL = findViewById(R.id.addNewImgLL);
@@ -86,12 +91,35 @@ public class CreateNewAdActivity extends AppCompatActivity implements View.OnCli
         mainImgIB.setOnClickListener(this);
         submitBtn.setOnClickListener(this);
         addNewImgLL.setOnClickListener(this);
+        previewBtn.setOnClickListener(this);
+        catsTIL.getEditText().setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if(b)
+                {
+                    final ChooseLocationDialog cld = new ChooseLocationDialog(CreateNewAdActivity.this);
+                    cld.show();
+                    cld.setOnDismissListener(new DialogInterface.OnDismissListener() {
+                        @Override
+                        public void onDismiss(DialogInterface dialogInterface) {
+                            priceTIL.getEditText().requestFocus();
+                            catsTIL.getEditText().setText(cld.getSelectedCatsString());
+                            selectedCatsIds = cld.getSelectedCatsHM();
+                        }
+                    });
+                }
+
+
+            }
+        });
 
         setTextWatcher(titleTIL);
         setTextWatcher(desTil);
         setTextWatcher(priceTIL);
         setTextWatcher(phoneTIL);
         setTextWatcher(nameTIL);
+        setTextWatcher(catsTIL);
+
     }
 
     boolean isEveryThinkCorrect()
@@ -141,6 +169,9 @@ public class CreateNewAdActivity extends AppCompatActivity implements View.OnCli
                         break;
                     case R.id.nameTIL:
                         CheckTextValue(til, len, 3, 20);
+                        break;
+                    case R.id.catsTIL:
+                        CheckTextValue(til, len, 1, 2000);
                         break;
 
                 }
@@ -297,6 +328,9 @@ public class CreateNewAdActivity extends AppCompatActivity implements View.OnCli
               //  imgsIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
                 imgsIntent.setAction(Intent.ACTION_GET_CONTENT);
                 startActivityForResult(imgsIntent,44);
+                break;
+            case R.id.previewBtn:
+
                 break;
         }
     }

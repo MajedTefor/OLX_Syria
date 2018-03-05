@@ -1,5 +1,6 @@
 package com.olx.smartlife_solutions.olx_syria;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -37,14 +38,9 @@ public class HomeFragment extends Fragment implements StaticStrings,API_URLs{
 
     RequestQueue requestQueue;
 
-    //For Loading and failed view
-    RelativeLayout loadingAndFailedParentRL, loadingRL;
-    LinearLayout failedLL;
-    Button failedRetryBtn;
-    TextView statusCodeTV;
-    TextView catIdET;
+    LoadingAndFailedView loadingAndFailedView;
 
-    int statusCode = 0;
+    TextView catIdET;
 
 
     @Nullable
@@ -52,18 +48,15 @@ public class HomeFragment extends Fragment implements StaticStrings,API_URLs{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.home_fragment,container,false);
 
-        loadingAndFailedParentRL = view.findViewById(R.id.loadingAndFailedRL);
-        loadingRL = view.findViewById(R.id.loadingViewRL);
-        failedLL = view.findViewById(R.id.failedViewLL);
-        failedRetryBtn = view.findViewById(R.id.failedRetryBtn);
-        statusCodeTV = view.findViewById(R.id.statusCodeTV);
-        catIdET = view.findViewById(R.id.catIdET);
-        failedRetryBtn.setOnClickListener(new View.OnClickListener() {
+        loadingAndFailedView = new LoadingAndFailedView();
+        loadingAndFailedView.initialize(view);
+        loadingAndFailedView.setFailedRetryBtnClick(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 downloadCategoriesThenMainAds();
             }
         });
+        catIdET = view.findViewById(R.id.catIdET);
 
         catIdET.addTextChangedListener(new TextWatcher() {
             @Override
@@ -118,7 +111,7 @@ public class HomeFragment extends Fragment implements StaticStrings,API_URLs{
     }
 
     void downloadCategoriesThenMainAds(){
-        showLoadingView();
+        loadingAndFailedView.showLoadingView();
         final StringRequest getCategoriesJson = new StringRequest(Request.Method.GET, CATEGORIES_URL,
             new Response.Listener<String>() {
                 @Override
@@ -133,7 +126,7 @@ public class HomeFragment extends Fragment implements StaticStrings,API_URLs{
                 public void onErrorResponse(VolleyError volleyError) {
 
                     //statusCode = volleyError.networkResponse.statusCode;
-                    showFailedView();
+                    loadingAndFailedView.showFailedView();
                     Toast.makeText(getContext(),"1",Toast.LENGTH_LONG).show();
                 }
             }
@@ -153,7 +146,7 @@ public class HomeFragment extends Fragment implements StaticStrings,API_URLs{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //statusCode = volleyError.networkResponse.statusCode;
-                        showFailedView();
+                        loadingAndFailedView.showFailedView();
                         Toast.makeText(getContext(),"2",Toast.LENGTH_LONG).show();
                     }
                 }
@@ -174,7 +167,7 @@ public class HomeFragment extends Fragment implements StaticStrings,API_URLs{
                     @Override
                     public void onErrorResponse(VolleyError volleyError) {
                         //statusCode = volleyError.networkResponse.statusCode;
-                        showFailedView();
+                        loadingAndFailedView.showFailedView();
                         Toast.makeText(getContext(),"23",Toast.LENGTH_LONG).show();
                     }
                 }
@@ -198,11 +191,11 @@ public class HomeFragment extends Fragment implements StaticStrings,API_URLs{
                 AdCard card = new AdCard(getContext(),data);
                 grid.addItem(card);
             }
-            hideLoadingAndFailedView();
+            loadingAndFailedView.hideLoadingAndFailedView();
         }
         catch (Exception e){
             Toast.makeText(getContext(),e.getMessage(),Toast.LENGTH_LONG).show();
-            showFailedView();
+            loadingAndFailedView.showFailedView();
         }
     }
 
@@ -213,21 +206,4 @@ public class HomeFragment extends Fragment implements StaticStrings,API_URLs{
         categoryRV.setAdapter(adapter);
     }
 
-    void showFailedView()
-    {
-        statusCodeTV.setText(" " + statusCode);
-        loadingAndFailedParentRL.setVisibility(View.VISIBLE);
-        loadingRL.setVisibility(View.GONE);
-        failedLL.setVisibility(View.VISIBLE);
-    }
-
-    void showLoadingView(){
-        loadingAndFailedParentRL.setVisibility(View.VISIBLE);
-        loadingRL.setVisibility(View.VISIBLE);
-        failedLL.setVisibility(View.GONE);
-    }
-
-    void hideLoadingAndFailedView(){
-        loadingAndFailedParentRL.setVisibility(View.GONE);
-    }
 }
