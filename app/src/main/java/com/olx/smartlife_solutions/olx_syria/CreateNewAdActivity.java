@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.TextInputLayout;
@@ -249,17 +250,41 @@ public class CreateNewAdActivity extends AppCompatActivity implements View.OnCli
 
             if(requestCode == 44)
             {
-                Uri path = data.getData();
+
                 Bitmap bitmap;
                 try {
-                    bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),path);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2){
+                        if(data.getClipData() != null) {
+                            int count = data.getClipData().getItemCount();
+                            int currentItem = 0;
+                            while(currentItem < count) {
+                                Uri imageUri = data.getClipData().getItemAt(currentItem).getUri();
+                                bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),imageUri);
+                                adImages.add(getResizedBitmap(bitmap,800));
+                                currentItem++;
+                            }
+                            msg("clip");
+                        } else if(data.getData() != null) {
+                            Uri path = data.getData();
+                            bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),path);
+                            adImages.add(getResizedBitmap(bitmap,800));
+                            msg("data");
+                        }
 
-                    adImages.add(getResizedBitmap(bitmap,800));
+                    }
+                    else{
+                        Uri path = data.getData();
+                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),path);
+                        adImages.add(getResizedBitmap(bitmap,800));
+                    }
+
+
 
                     adImagesAdapter.notifyDataSetChanged();
 
                 } catch (IOException e) {
                     e.printStackTrace();
+                    msg(e.getMessage()+"");
                 }
             }
         }
@@ -325,9 +350,18 @@ public class CreateNewAdActivity extends AppCompatActivity implements View.OnCli
             case R.id.addNewImgLL:
                 Intent imgsIntent = new Intent();
                 imgsIntent.setType("image/*");
-              //  imgsIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
-                imgsIntent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(imgsIntent,44);
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+                    imgsIntent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
+                    imgsIntent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(Intent.createChooser(imgsIntent,"Select Pictures"),44);
+                    msg("top");
+                }
+                else{
+                    imgsIntent.setAction(Intent.ACTION_GET_CONTENT);
+                    startActivityForResult(imgsIntent,44);
+                    msg("down");
+                }
+
                 break;
             case R.id.previewBtn:
 
